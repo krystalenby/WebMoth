@@ -1,0 +1,135 @@
+/* Retro 90s stylesheet */
+:root{
+  --bg:#cfe8ff;
+  --panel:#fffbe6;
+  --page-width:1000px;
+  --accent:#ff66cc;
+  --muted:#555;
+}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family: "Courier New", Courier, monospace;
+  /* intentionally ugly, loud gradient */
+  background: linear-gradient(135deg, #ff00ff 0%, #ffcc00 30%, #00ffff 60%, #66ff66 100%);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:1000px;margin:18px auto;border:4px solid #000;padding:0;background:linear-gradient(#ffffff,#f2f2f2);box-shadow:6px 6px 0 rgba(0,0,0,0.2);}
+.mast{display:flex;align-items:center;padding:10px 12px;background:linear-gradient(90deg,#001144 0%, #003366 100%);color:#fff}
+.logo{height:40px;margin-right:10px;border:2px solid #fff}
+.marq{flex:1;color:#ffcc00;font-weight:bold}
+.container{display:flex;}
+.sidebar{width:200px;padding:12px;border-right:3px dashed #000;background:repeating-linear-gradient(45deg,#fff0, #fff0 6px,#fff6 6px,#fff6 12px);}
+.sidebar ul{list-style:none;padding:0;margin:0}
+.sidebar li{margin:8px 0}
+.sidebar a{color:#003366;text-decoration:underline;font-weight:bold}
+.counter{margin-top:18px;padding:8px;background:var(--panel);border:2px inset #ddd;text-align:center}
+.counter #visitor-count{font-size:18px;color:var(--accent);font-weight:bold}
+.content{flex:1;padding:12px}
+.card{background:var(--panel);border:2px solid #000;padding:10px;margin-bottom:12px;box-shadow:inset 2px 2px 0 rgba(255,255,255,0.6), 4px 4px 0 rgba(0,0,0,0.08)}
+
+/* sprinkled images */
+.sprinkle{width:120px;height:auto;display:block;margin:8px 0;border:2px solid #000;background:#fff;image-rendering:pixelated}
+.sprinkle-caption{font-size:12px;color:#333;margin-bottom:6px}
+.card h2{margin-top:0;color:#111}
+.hint{font-size:12px;color:var(--muted)}
+.projects-list{display:flex;gap:12px}
+.project{flex:1;background:#fff;border:2px dotted #999;padding:8px}
+.link-list{columns:2}
+.form-actions{margin-top:8px}
+input,textarea{width:100%;box-sizing:border-box;padding:6px;border:2px inset #eee;margin-top:6px;font-family:inherit}
+button{background:linear-gradient(#ff9ad1,#ff66cc);border:2px solid #000;padding:6px 10px;cursor:pointer;font-weight:bold}
+button:hover{transform:translateY(-1px)}
+
+/* add cheesy emoticon spacing and tiny decorations */
+.sidebar a::before, .project h3::before, .link-list a::before, .form-actions button::before{
+  content: " ";
+}
+.logo{border:3px dotted #ffccff}
+.marq{font-family: 'Comic Sans MS', 'Courier New', monospace}
+
+/* decorative background sprites placed behind the page content */
+.decor-sprites{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.decor-sprites .sprite{position:absolute;max-width:260px;opacity:0.12;filter:grayscale(10%);mix-blend-mode:screen;image-rendering:pixelated}
+.decor-sprites .s1{left:6%;top:12%;transform:rotate(-10deg);width:220px}
+.decor-sprites .s2{right:6%;top:8%;transform:rotate(6deg);width:200px}
+.decor-sprites .s3{left:12%;bottom:8%;transform:rotate(8deg);width:180px}
+.decor-sprites .s4{right:14%;bottom:12%;transform:rotate(-6deg);width:160px}
+
+/* keep main page above decorative sprites */
+.page{position:relative;z-index:1}
+
+/* border polaroids using all assets */
+.border-polaroids{position:fixed;inset:0;pointer-events:none;z-index:3}
+.polaroid-border{position:absolute;width:72px;height:56px;background:#fff;padding:6px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.08);transform-origin:center;overflow:hidden;opacity:0.9}
+  .border-polaroids{position:fixed;inset:0;pointer-events:auto;z-index:9999}
+  .polaroid-border{position:absolute;width:72px;height:56px;background:#fff;padding:6px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.08);transform-origin:center;overflow:hidden;opacity:0.9}
+  .polaroid-border{z-index:10000;pointer-events:auto;cursor:grab;transition:transform 160ms cubic-bezier(.2,.9,.24,1), box-shadow 160ms ease; will-change:transform}
+  .polaroid-border.dragging{cursor:grabbing;box-shadow:12px 14px 24px rgba(0,0,0,0.18)}
+  /* putdown is animated via transform transition; JS will set transform back to rotate(angle) on drop */
+  .polaroid-border.putdown{ transform-origin:center; }
+
+  @keyframes polaroid-putdown{
+    0%{transform:translateY(-8px) scale(1.06);}
+    60%{transform:translateY(2px) scale(1.02);} 
+   100%{transform:none}
+  }
+.polaroid-border img,.polaroid-border video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.polaroid-border video{background:#000}
+.polaroid-border{filter:drop-shadow(4px 4px 0 rgba(0,0,0,0.06));opacity:0.9}
+.polaroid-border.p1{left:calc(50% - var(--page-width)/2 - 240px);top:4%;transform:rotate(-12deg)}
+.polaroid-border.p2{left:calc(50% - var(--page-width)/2 - 200px);top:42%;transform:rotate(8deg)}
+.polaroid-border.p3{left:calc(50% - var(--page-width)/2 - 80px);bottom:-200px;transform:rotate(6deg)}
+.polaroid-border.p4{left:calc(50% - var(--page-width)/2 + 300px);bottom:-200px;transform:rotate(-8deg)}
+.polaroid-border.p5{left:calc(50% + var(--page-width)/2 + 200px);bottom:8%;transform:rotate(12deg)}
+.polaroid-border.p6{left:calc(50% + var(--page-width)/2 + 180px);top:18%;transform:rotate(-6deg)}
+.polaroid-border.p7{left:calc(50% + var(--page-width)/2 + 140px);top:44%;transform:rotate(10deg)}
+.polaroid-border.p8{left:calc(50% - var(--page-width)/2 + 240px);top:-200px;transform:rotate(-10deg)}
+.polaroid-border.p9{left:calc(50% - var(--page-width)/2 + 80px);top:-200px;transform:rotate(10deg)}
+
+/* keep polaroids decorative on large screens only */
+@media (max-width:900px){ .border-polaroids{display:none} }
+
+/* ensure main page sits above decorative polaroids */
+.page{position:relative;z-index:1}
+
+/* MSN-style emoticon icons */
+.msn{width:18px;height:18px;vertical-align:middle;margin-right:6px;border:1px solid rgba(0,0,0,0.15);border-radius:3px;background:#fff}
+.msn[alt]{box-shadow:1px 1px 0 rgba(0,0,0,0.15)}
+
+/* scrapbook / polaroid hero */
+.hero{display:flex;gap:12px;padding:10px 12px}
+.polaroid{width:180px;background:#fff;padding:8px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.15);transform:rotate(-4deg)}
+.polaroid.small{width:120px;transform:rotate(6deg)}
+.polaroid img{display:block;width:100%;height:auto;image-rendering:pixelated}
+.polaroid .caption{font-size:12px;text-align:center;color:#333;margin-top:6px}
+
+/* badges */
+.badges{margin-top:12px}
+.badge-grid{display:grid;grid-template-columns:repeat(2,88px);gap:6px}
+.badge-grid img{width:88px;height:31px;border:1px solid #000}
+
+/* decorative icons next to headings */
+.deco{display:inline-block;vertical-align:middle;margin-right:8px}
+.deco-anim{width:18px;height:18px}
+
+/* typography: casual fallback */
+body{font-family: 'Trebuchet MS', 'Comic Sans MS', 'Courier New', monospace}
+
+@media (max-width:700px){
+  .hero{flex-direction:column;align-items:center}
+  .polaroid{transform:none}
+}
+#guest-entries{margin-top:12px}
+.entry{border-top:1px dashed #999;padding:8px 0}
+.foot{display:flex;justify-content:space-between;padding:8px 12px;background:#e6f3ff;border-top:3px solid #000}
+.badge{background:#000;color:#ffcc00;padding:4px 8px;border:2px outset #444}
+/* small responsive tweaks */
+@media (max-width:700px){
+  .container{flex-direction:column}
+  .sidebar{width:100%;order:2}
+}
+/* little blink effect for extra nostalgia */
+.blink{animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{visibility:hidden}}
