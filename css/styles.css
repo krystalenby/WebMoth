@@ -61,7 +61,7 @@ button:hover{transform:translateY(-1px)}
 .page{position:relative;z-index:1}
 
 /* border polaroids using all assets */
-.border-polaroids{position:fixed;inset:0;pointer-events:none;z-index:3}
+.border-polaroids{position:fixed;inset:0;pointer-events:auto;z-index:3}
 .polaroid-border{position:absolute;width:72px;height:56px;background:#fff;padding:6px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.08);transform-origin:center;overflow:hidden;opacity:0.9;pointer-events:auto;cursor:grab;transition:transform 160ms cubic-bezier(.2,.9,.24,1), box-shadow 160ms ease; will-change:transform}
   .polaroid-border.dragging{cursor:grabbing;box-shadow:12px 14px 24px rgba(0,0,0,0.18)}
   /* putdown is animated via transform transition; JS will set transform back to rotate(angle) on drop */
