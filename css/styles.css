@@ -58,14 +58,11 @@ button:hover{transform:translateY(-1px)}
 .decor-sprites .s4{right:14%;bottom:12%;transform:rotate(-6deg);width:160px}
 
 /* keep main page above decorative sprites */
-.page{position:relative;z-index:1}
+.page{position:relative;z-index:10}
 
 /* border polaroids using all assets */
-.border-polaroids{position:fixed;inset:0;pointer-events:none;z-index:3}
-.polaroid-border{position:absolute;width:72px;height:56px;background:#fff;padding:6px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.08);transform-origin:center;overflow:hidden;opacity:0.9}
-  .border-polaroids{position:fixed;inset:0;pointer-events:auto;z-index:9999}
-  .polaroid-border{position:absolute;width:72px;height:56px;background:#fff;padding:6px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.08);transform-origin:center;overflow:hidden;opacity:0.9}
-  .polaroid-border{z-index:10000;pointer-events:auto;cursor:grab;transition:transform 160ms cubic-bezier(.2,.9,.24,1), box-shadow 160ms ease; will-change:transform}
+.border-polaroids{position:fixed;inset:0;pointer-events:none;z-index:2}
+.polaroid-border{position:absolute;width:72px;height:56px;background:#fff;padding:6px;border:6px solid #fff;box-shadow:6px 6px 0 rgba(0,0,0,0.08);transform-origin:center;overflow:hidden;opacity:0.9;pointer-events:auto;cursor:grab;transition:transform 160ms cubic-bezier(.2,.9,.24,1), box-shadow 160ms ease; will-change:transform}
   .polaroid-border.dragging{cursor:grabbing;box-shadow:12px 14px 24px rgba(0,0,0,0.18)}
   /* putdown is animated via transform transition; JS will set transform back to rotate(angle) on drop */
   .polaroid-border.putdown{ transform-origin:center; }
